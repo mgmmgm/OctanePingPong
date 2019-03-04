@@ -1,0 +1,28 @@
+<div>
+    Table league
+    <div>Hello {{loggedInUser.nickname}}</div>
+    <div class="table-leagues">
+        <div *ngFor="let table of mapTablesLeague | keyvalue" class="table-league">
+            <label class="groups-table-title">Group {{table.key}}</label>
+            <table class="table table-bordered groups-table">
+                <thead>
+                    <th class="groups-table-header">#</th>
+                    <th class="groups-table-header groups-table-header-player">Player</th>
+                    <th class="groups-table-header groups-table-header-num-games">Num Of Games</th>
+                    <th class="groups-table-header groups-table-header-wins">Wins</th>
+                    <th class="groups-table-header groups-table-header-num-losses">Losses</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let score of table.value | sortBy: 'wins' ; let i = index" [ngClass]="{'group-table-success': i < 2}">
+                        <td>{{i + 1}}</td>
+                        <td [ngClass]="{'group-tables-active-user': score.username == loggedInUser.email}">{{score.fullName}}</td>
+                        <td>{{score.wins + score.losses}}</td>
+                        <td>{{score.wins}}</td>
+                        <td>{{score.losses}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>

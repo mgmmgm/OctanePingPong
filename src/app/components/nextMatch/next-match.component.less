@@ -1,0 +1,73 @@
+.next-game-header {
+    text-align: center;
+    font-size: 60px;
+    margin: 10px 0 50px 0;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.next-game-date {
+    text-align: center;
+    font-size: 30px;
+    margin: 20px 0px 40px 0px;
+}
+
+.next-game-date label {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.next-game-date span {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.next-game-players {
+    text-align: center;
+}
+
+
+.next-game-player {
+    background:#cccccc;
+    position: relative;
+}
+
+.next-game-left-player {
+    -webkit-animation: left-player-animation 2s ; /* Chrome, Safari, Opera */
+    -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
+    animation: left-player-animation 2s;
+    animation-direction: alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes left-player-animation {
+    0%   {left: -300px; top: 0px;}
+    100%  {left: 0px; top: 0px;}
+}
+
+@keyframes left-player-animation {
+    0%   {left: -300px; top: 0px;}
+    100%  {left: 0px; top: 0px;}
+}
+
+.next-game-right-player {
+    -webkit-animation: right-player-animation 2s ; /* Chrome, Safari, Opera */
+    -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
+    animation: right-player-animation 2s;
+    animation-direction: alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes right-player-animation {
+    0%   {left: 300px; top: 0px;}
+    100%  {left: 0px; top: 0px;}
+}
+
+@keyframes right-player-animation {
+    0%   {left: 300px; top: 0px;}
+    100%  {left: 0px; top: 0px;}
+}
+
+
+
+
+.next-game-image {
+    width: 40%;
+}

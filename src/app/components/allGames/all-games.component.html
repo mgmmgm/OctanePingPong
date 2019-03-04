@@ -1,0 +1,28 @@
+<div class="all-games">
+    <span class="all-games-table-filters">
+        <label>Filter:</label>
+        <span class="all-games-filter-table" (click)="selectFilterTable('all')" [ngClass]="{selected: selectedFilter == 'all'}">All</span>
+        <span class="all-games-filter-table all-games-filter-my-group" (click)="selectFilterTable('group')" [ngClass]="{selected: selectedFilter == 'group'}">My Group</span>
+        <span class="all-games-filter-table all-games-filter-my-games" (click)="selectFilterTable('my')" [ngClass]="{selected: selectedFilter == 'my'}">My Games</span>
+    </span>
+    <table class="table table-bordered all-games-table">
+        <thead>
+            <th class="all-games-table-header">#</th>
+            <th class="all-games-table-header all-games-table-header-group-name">Group Name</th>
+            <th class="all-games-table-header">Player 1</th>
+            <th class="all-games-table-header">Player 2</th>
+            <th class="all-games-table-header">Time Frame</th>
+            <th class="all-games-table-header">Winner</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let game of games | filterGames: tableFilter; let i=index" [ngClass]="{'all-games-table-finish-game': game.winner, 'all-games-table-even-round': game.round % 2 == 0}">
+                <td>{{i + 1}}</td>
+                <td>{{game.groupName}}</td>
+                <td>{{game.playerAfullName}}</td>
+                <td>{{game.playerBfullName}}</td>
+                <td>{{game.startDate | date}} - {{game.endDate | date}}</td>
+                <td>{{game.winner}}</td>
+             </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+<div>
+
+    <div class="text-align-center">
+        <h1 class="registration-header">ALM Octane Table Tennis Tournament 2018!</h1>
+        <p>In the next few days we are about to conduct the first Octane tennis table tournament, if you would like to join us, fill your details below.</p>
+    </div>
+
+    <div class="login-form-container">
+        <form #registrationForm="ngForm" (ngSubmit)="register()" class='login-form'>
+            <div class="flex-row">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-envelope" title="Mail"></i></span>
+                    <input type="text" pInputText name="email" [(ngModel)]="user.email" placeholder="Mail" required>
+                    <span class="asterisk" title="required">*</span>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-lock" title="Password"></i></span>
+                    <input type="password" pInputText name="password" [(ngModel)]="user.password" placeholder="Password" required>
+                    <span class="asterisk" title="required">*</span>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-user" title="Nickname"></i></span>
+                    <input type="text" pInputText name="nickname" [(ngModel)]="user.nickname" placeholder="Nickname" required>
+                    <span class="asterisk" title="required">*</span>
+                </div>
+            </div>
+            <input class="lf--submit" type="submit" value="Register" [disabled]="!registrationForm.form.valid">
+            <div class="error" ng-if="errorWithRegistration">
+                {{errorWithRegistration}}
+            </div>
+        </form>
+
+    </div>
+
+
+</div>

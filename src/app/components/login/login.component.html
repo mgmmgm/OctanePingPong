@@ -1,0 +1,28 @@
+<div>
+
+    <div  class="text-align-center">
+        <p>Welcome</p>
+    </div>
+
+    <div class="login-form-container">
+        <form #loginForm="ngForm" (ngSubmit)="login()" class='login-form'>
+            <div class="flex-row">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-envelope" title="Mail"></i></span>
+                    <input type="text" pInputText name="email" [(ngModel)]="user.email" placeholder="Mail" required>
+                </div>
+            </div>
+            <div class="flex-row">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-lock" title="Password"></i></span>
+                    <input type="password" pInputText name="password" [(ngModel)]="user.password" placeholder="Password" required>
+                </div>
+            </div>
+            <input class='lf--submit' type='submit' value='Login' [disabled]="!loginForm.form.valid">
+            <div class="error" ng-if="errorInLogin">
+                {{errorInLogin}}
+            </div>
+        </form>
+    </div>
+
+</div>
