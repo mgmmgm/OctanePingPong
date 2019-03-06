@@ -12,11 +12,12 @@ import { NavBarComponent } from './components/navBar/nav-bar.component';
 import { AuthGardService } from './services/authGuardService';
 import { FirebaseAuthService } from './services/firebaseAuthService';
 import { FirebaseService } from './services/firebaseService';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/components/button/button";
 import {
   MatTableModule, MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
-  MatSortModule
+  MatSortModule,
+  MatSelectModule
 } from "@angular/material";
 import {MatTabsModule} from '@angular/material/tabs';
 import {TableModule} from "primeng/components/table/table";
@@ -57,6 +58,7 @@ import { PlayerComponent } from './components/player/player.component';
     AngularFireAuthModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     TableModule,
     FieldsetModule,
@@ -67,7 +69,8 @@ import { PlayerComponent } from './components/player/player.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   providers: [AuthGardService, FirebaseAuthService, FirebaseService, GameService, PlayerService],
   bootstrap: [AppComponent]

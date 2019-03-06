@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import {Observable} from 'rxjs';
 import {Player} from '../models/player';
 import {Game} from '../models/game'
@@ -7,13 +7,13 @@ import { Score } from '../models/score';
 
 const LEAGUE_URL: string = 'league/';
 const PLAYERS_URL: string = 'players';
-const GROUPS_URL: string = LEAGUE_URL + 'groups';
-const GAMES_URL: string = LEAGUE_URL + 'games';
-const SCORE_URL: string = LEAGUE_URL + 'score';
+const GROUPS_URL: string = LEAGUE_URL + 'groups/';
+const GAMES_URL: string = LEAGUE_URL + 'games/';
+const SCORE_URL: string = LEAGUE_URL + 'score/';
 
 @Injectable()
 export class FirebaseService {
-
+    
     usersRef: AngularFireList<Player>; 
     gamesRef: AngularFireList<Game>;
     scoresRef: AngularFireList<Score>;
@@ -64,6 +64,48 @@ export class FirebaseService {
         } catch (error) {
             console.log('failed to init score. ' + error);
         }
+    }
+
+    updateGameAndScore(id, winner) {
+        return new Promise((resolve, reject) => {
+            this.db.object(GAMES_URL + `/${id}`).query.once('value').then(snapshot => {
+                let game = snapshot.val();
+                let loser = winner === game.playerA ? game.playerB : game.playerA;
+                
+                // update the winner of the game
+                this.db.object(GAMES_URL + `/${id}`).update({
+                    winner
+                }).catch(error => {
+                    console.log(error);
+                    reject('failed to update the winner of the game (and not update winners and losser scores).');
+                });
+
+                // update the counter of wins and losses for the players
+                winner = winner.replace(/[.#$]/g, '_');
+                loser = loser.replace(/[.#$]/g, '_');
+                this.db.object(SCORE_URL + winner + '/wins').query.once('value').then(snapshotWins => {
+                    this.db.object(SCORE_URL + winner).update({
+                        wins: snapshotWins.val() + 1
+                    }).catch(error => {
+                        console.log(error);
+                        reject('failed to update winner score (and not update losser score also).');
+                    });
+
+                    this.db.object(SCORE_URL + loser + '/losses').query.once('value').then(snapshotLosses => {
+                        this.db.object(SCORE_URL + loser).update({
+                            losses: snapshotLosses.val() + 1
+                        }).then(_ => {
+                            resolve('success update game and scores');
+                        }).catch(error => {
+                            console.log(error);
+                            reject('failed to update losser score.');
+                        })
+                    })
+                })
+            })
+
+        })
+
     }
 
 

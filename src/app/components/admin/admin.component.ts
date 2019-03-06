@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FirebaseAuthService} from '../../services/firebaseAuthService';
 import {FirebaseService} from '../../services/firebaseService';
 import {GameService} from '../../services/gameService';
+import { PlayerService } from '../../services/playerService';
 import {Player} from '../../models/player';
+import { Game } from '../../models/Game';
 
 @Component({
     templateUrl: './admin.component.html',
@@ -11,14 +13,31 @@ import {Player} from '../../models/player';
 export class AdminComponent implements OnInit {
 
     players: Player[];
-    league;
-    createLeagueResult: string;
+	league;
+	createLeagueResult: string;
+	games: Game[];
+	resultMessage: any;
+	alreadyHaveLeague: boolean;
 
-    constructor(private firebaseAuthService: FirebaseAuthService, private firebaseService: FirebaseService, private gameService: GameService) {}
+    constructor(private firebaseAuthService: FirebaseAuthService, private firebaseService: FirebaseService, private gameService: GameService, private playerService: PlayerService) {}
 
     ngOnInit() {
-        this.league = {howManyGroups: 1, startingDay: new Date()};
-        this.firebaseService.getAllPlayers().subscribe(players => this.players = players);
+        this.league = {howManyGroups: 1, startingDay: new Date(), timeFrameForEachGame: 3};
+		this.firebaseService.getAllPlayers().subscribe((players: Player[]) => {
+			this.players = players;
+
+			this.firebaseService.getAllGames().subscribe((games: Game[]) => {
+				this.alreadyHaveLeague = games.length > 0;
+				this.playerService.setFullNameForPlayers(games);
+				this.games = games.filter(game => !game.winner);
+				this.games.forEach((game: Game) => {
+					game.whoIsWin = [
+						{'value': game.playerA, 'viewValue': game.playerAfullName},
+						{'value': game.playerB, 'viewValue': game.playerBfullName}
+					]
+				})
+			})
+		});
     }
 
     public createLeague() {
@@ -49,7 +68,7 @@ export class AdminComponent implements OnInit {
 			}
 			for (let j=0; j < games.length; j++) {
 				let roundGames = games[j];
-				let nextDate = this.gameService.calcNextWorkingDays(date, 2);
+				let nextDate = this.gameService.calcNextWorkingDays(date, this.league.timeFrameForEachGame - 1);
 				for (let k=0; k < roundGames.length; k++, id++) {
 					this.firebaseService.addGame(groupName, id, date, nextDate, roundGames[k].player1, roundGames[k].player2, j+1);
 				}
@@ -124,6 +143,13 @@ export class AdminComponent implements OnInit {
 		return array;
     }
     
-
+	public updateGame(gameId, winner) {
+		this.resultMessage = null;
+		this.firebaseService.updateGameAndScore(gameId, winner).then(result => {
+			this.resultMessage = result;
+		}).catch(error => {
+			this.resultMessage = error;
+		});
+	}
 
 }

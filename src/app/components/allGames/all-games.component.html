@@ -15,7 +15,7 @@
             <th class="all-games-table-header">Winner</th>
         </thead>
         <tbody>
-            <tr *ngFor="let game of games | filterGames: tableFilter; let i=index" [ngClass]="{'all-games-table-finish-game': game.winner, 'all-games-table-even-round': game.round % 2 == 0}">
+            <tr *ngFor="let game of games | filterGames: tableFilter | sortBy: 'startDate':'ascending' ; let i=index" [ngClass]="{'all-games-table-finish-game': game.winner, 'all-games-table-even-round': (i+1) % 2 == 0}">
                 <td>{{i + 1}}</td>
                 <td>{{game.groupName}}</td>
                 <td>{{game.playerAfullName}}</td>

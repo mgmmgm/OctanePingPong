@@ -21,10 +21,10 @@ export class AllGamesComponent implements OnInit {
 
     async ngOnInit() {
         const playersPromise = this.playerService.getAllPlayers();
-        const gamesPromise = new Promise((resolve, reject) => this.firebaseService.getAllGames().subscribe(games => resolve(games)));
+        const gamesPromise = new Promise((resolve, reject) => this.firebaseService.getAllGames().subscribe((games) => resolve(games)));
         const [allPlayers, games] = await Promise.all([playersPromise, gamesPromise]);
         
-        this.setFullNameForPlayers(games);
+        this.playerService.setFullNameForPlayers(games);
         this.games = games;
 
         this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => {
@@ -48,16 +48,6 @@ export class AllGamesComponent implements OnInit {
                 break;
         }
         this.selectedFilter = filterBy;
-    }
-
-    private setFullNameForPlayers(games) {
-        games.forEach((game: Game) => {
-            game.playerAfullName = this.playerService.getPlayerFullName(game.playerA);
-            game.playerBfullName = this.playerService.getPlayerFullName(game.playerB);
-            if (game.winner) {
-                game.winner = this.playerService.getPlayerFullName(game.winner);
-            }
-        });
     }
 
     private findPlayerGroup(player: Player) {

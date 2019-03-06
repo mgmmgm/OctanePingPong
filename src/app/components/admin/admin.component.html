@@ -28,7 +28,7 @@
     </div>
 
     <div class="margin-v--10px">
-        <p-fieldset *ngIf="players" class="margin-v--10px" legend="Create League" [toggleable]="true">
+        <p-fieldset *ngIf="players" class="margin-v--10px" legend="Create League" [toggleable]="true" [collapsed]="alreadyHaveLeague">
             <div class="margin-v--10px">
                 <label class="admin-label">How many groups:</label>
                 <p-spinner [(ngModel)]="league.howManyGroups" [min]="1"></p-spinner>
@@ -38,9 +38,50 @@
                 <p-calendar [(ngModel)]="league.startingDay" [showIcon]="true"></p-calendar>
             </div>
             <div class="margin-v--10px">
-                <button pButton type="button" class="create-button" (click)="createLeague()" label="Create League"></button>
-                <span>{{createLeagueResult}}</span>
+                    <label class="admin-label">Time frame for each game (in days):</label>
+                    <p-spinner [(ngModel)]="league.timeFrameForEachGame" [min]="1"></p-spinner>
+                </div>
+            <div class="margin-v--10px">
+                <button pButton type="button" class="create-button" (click)="createLeague()" [disabled]="alreadyHaveLeague"
+                    label="Create League"></button>
+                <span class="result-massage">{{createLeagueResult}}</span>
             </div>
+        </p-fieldset>
+    </div>
+
+    <div class="margin-v--10px">
+        <p-fieldset *ngIf="games" class="margin-v--10px" legend="Update Games" [toggleable]="true" [collapsed]="!alreadyHaveLeague">
+            <div *ngIf="resultMessage" class="result-massage">
+                    {{resultMessage}}
+            </div>
+            <table class="table table-bordered all-games-table">
+                <thead>
+                    <th class="all-games-table-header">#</th>
+                    <th class="all-games-table-header all-games-table-header-group-name">Group Name</th>
+                    <th class="all-games-table-header">Player 1</th>
+                    <th class="all-games-table-header">Player 2</th>
+                    <th class="all-games-table-header">Time Frame</th>
+                    <th class="all-games-table-header">Winner</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let game of games; let i=index">
+                        <td>{{i + 1}}</td>
+                        <td>{{game.groupName}}</td>
+                        <td>{{game.playerAfullName}}</td>
+                        <td>{{game.playerBfullName}}</td>
+                        <td>{{game.startDate | date}} - {{game.endDate | date}}</td>
+                        <td>
+                            <mat-form-field>
+                                <mat-select placeholder="Who is Win?" (selectionChange)="updateGame(game.id, $event.value)">
+                                    <mat-option *ngFor="let whoWin of game.whoIsWin" [value]="whoWin.value">
+                                        {{whoWin.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </p-fieldset>
     </div>
 

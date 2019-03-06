@@ -36,6 +36,7 @@ export class FirebaseAuthService {
 
     async setUserData(player: Player) {
         const path = `players/${this.currentUserId}`;
+        player.email = player.email.replace(/[.#$]/g, '_');
         const data = {'email': player.email, 'password': player.password, 'nickname': player.nickname};
         try {
             await this.db.object(path).update(data);

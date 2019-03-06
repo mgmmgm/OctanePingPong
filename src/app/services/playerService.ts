@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FirebaseService} from '../services/firebaseService';
 import {Player} from '../models/player';
+import { Game } from '../models/Game';
 
 @Injectable()
 export class PlayerService {
@@ -8,7 +9,9 @@ export class PlayerService {
     private allPlayers: Player[];
     private playersMap = {};
 
-    constructor(private firebaseService: FirebaseService) {}
+    constructor(private firebaseService: FirebaseService) {
+        this.getAllPlayers();
+    }
 
     private createPlayersMap(players: Player[]) {
         players.forEach(player => {
@@ -31,6 +34,17 @@ export class PlayerService {
     }
 
     public getPlayerFullName(playerEmail: string) : string {
-        return this.playersMap[playerEmail].nickname;
+        return (this.playersMap[playerEmail] && this.playersMap[playerEmail].nickname) || (this.playersMap[playerEmail.replace(/[.#$]/g, '_')] && this.playersMap[playerEmail.replace(/[.#$]/g, '_')].nickname) ;
     }
+
+    public setFullNameForPlayers(games) {
+        games.forEach((game: Game) => {
+            game.playerAfullName = this.getPlayerFullName(game.playerA);
+            game.playerBfullName = this.getPlayerFullName(game.playerB);
+            if (game.winner) {
+                game.winner = this.getPlayerFullName(game.winner);
+            }
+        });
+    }
+
 }

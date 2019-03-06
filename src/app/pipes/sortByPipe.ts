@@ -7,15 +7,15 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
     pure: false
 })
 export class SortByPipe implements PipeTransform {
-    transform(items: any, field: string): Score[] {
+    transform(items: any, field: string, order: string): Score[] {
         if (!items || !field) {
             return items;
         }
         items.sort((a: any, b: any) => {
             if (a[field] > b[field]) {
-                return -1;
+                return order === 'descending' ? -1 : 1;
             } else if (a[field] < b[field]) {
-                return 1;
+                return order === 'descending' ? 1 : -1;
             }
             return 0;
         })

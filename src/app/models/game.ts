@@ -3,11 +3,12 @@ export class Game {
     id: number;
     groupName: string;
     playerA: string;
-    playerAfullName: string;
+    playerAfullName?: string;
     playerB: string;
-    playerBfullName: string;
+    playerBfullName?: string;
     round: number;
     startDate: Date;
     endDate: number;
-    winner: string;
+    winner?: string;
+    whoIsWin?: Object[];
 }
