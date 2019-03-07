@@ -6,7 +6,7 @@ import { Player } from '../../models/player';
 @Component({
     selector: 'nav-bar',
     templateUrl: './nav-bar.component.html',
-    styles: []
+    styleUrls: ['nav-bar.component.less']
 })
 export class NavBarComponent implements OnInit {
 
