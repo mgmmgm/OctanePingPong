@@ -5,7 +5,6 @@ import * as firebase from 'firebase';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {Player} from '../models/player';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Injectable()
 export class FirebaseAuthService {
@@ -19,7 +18,7 @@ export class FirebaseAuthService {
             } else {
                 console.log('problem to connect to firebase');
             }
-        })
+        });
     }
 
     get currentUserId(): string {
@@ -30,7 +29,8 @@ export class FirebaseAuthService {
         return this.afAuth.auth.createUserWithEmailAndPassword(player.email, player.password)
 			.then(fUser => {
 				this.authState = fUser;
-				this.setUserData(player);
+                this.setUserData(player);
+                return player;
 			});
     }
 
@@ -61,6 +61,7 @@ export class FirebaseAuthService {
 
     logout() {
         this.afAuth.auth.signOut();
+        this.authState = null;
         this.router.navigate(['/login']);
     }
 

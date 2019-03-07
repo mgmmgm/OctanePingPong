@@ -33,8 +33,9 @@
                 {{errorWithRegistration}}
             </div>
         </form>
-
     </div>
 
-
+    <div *ngIf="registerSuccessfully" class="margin-v--10px text-align-center">
+        You are successfully registered to this tournament...
+    </div>
 </div>

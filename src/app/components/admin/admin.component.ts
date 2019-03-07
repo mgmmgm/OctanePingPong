@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
 	resultMessage: any;
 	alreadyHaveLeague: boolean;
 
-    constructor(private firebaseAuthService: FirebaseAuthService, private firebaseService: FirebaseService, private gameService: GameService, private playerService: PlayerService) {}
+    constructor(private firebaseService: FirebaseService, private gameService: GameService, private playerService: PlayerService) {}
 
     ngOnInit() {
         this.league = {howManyGroups: 1, startingDay: new Date(), timeFrameForEachGame: 3};
@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit {
 						{'value': game.playerB, 'viewValue': game.playerBfullName}
 					]
 				})
-			})
+			});
 		});
     }
 
@@ -151,5 +151,6 @@ export class AdminComponent implements OnInit {
 			this.resultMessage = error;
 		});
 	}
+
 
 }

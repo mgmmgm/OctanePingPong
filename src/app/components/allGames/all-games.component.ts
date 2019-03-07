@@ -59,4 +59,5 @@ export class AllGamesComponent implements OnInit {
         }
     }
 
+
 }

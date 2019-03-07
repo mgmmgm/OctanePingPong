@@ -28,7 +28,7 @@ export class PlayerService {
                     this.allPlayers = players;
                     this.createPlayersMap(players);
                     resolve(this.allPlayers);
-                })
+                });
             })
         }
     }

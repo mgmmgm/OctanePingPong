@@ -3,22 +3,25 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" [routerLinkActive]="['active']">
+            <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['league']">League</a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['active']">
+            <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['nextMatch']">My Next Match</a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['active']">
+            <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['games']">All Games</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" [routerLinkActive]="['active']">
+            <li *ngIf="!firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['login']">Login</a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['active']">
+            <li *ngIf="firebaseAuthService.authState && isAdmin" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['admin']">admin</a>
+            </li>
+            <li *ngIf="firebaseAuthService.authState" class="nav-item" class="cursor-pointer">
+                <a class="nav-link" (click)="logout()">Logout</a>
             </li>
         </ul>
     </div>

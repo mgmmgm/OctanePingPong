@@ -35,6 +35,7 @@ import { PlayerService } from './services/playerService';
 import { filterGamesPipe } from './pipes/filterGamesPipe';
 import { SortByPipe } from './pipes/sortByPipe';
 import { PlayerComponent } from './components/player/player.component';
+import { AdminGuardService } from './services/adminGuardService';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { PlayerComponent } from './components/player/player.component';
     MatProgressSpinnerModule,
     MatSelectModule
   ],
-  providers: [AuthGardService, FirebaseAuthService, FirebaseService, GameService, PlayerService],
+  providers: [AuthGardService, AdminGuardService, FirebaseAuthService, FirebaseService, GameService, PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

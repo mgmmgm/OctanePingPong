@@ -7,14 +7,17 @@ import { TableLeagueCompoent } from './components/tableLeague/table-league.compo
 import { AuthGardService } from './services/authGuardService';
 import { AllGamesComponent } from './components/allGames/all-games.component';
 import { NextMatchComponent } from './components/nextMatch/next-match.component';
+import { AdminGuardService } from './services/adminGuardService';
 
 const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGardService, AdminGuardService]},
   {path: 'league' , component: TableLeagueCompoent, canActivate: [AuthGardService]},
   {path: 'nextMatch', component: NextMatchComponent, canActivate: [AuthGardService]},
-  {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]}
+  {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]},
+  { path: '',  redirectTo: '/registration', pathMatch: 'full' },
+	{ path: '**', redirectTo: '/registration' }
 ];
 
 @NgModule({

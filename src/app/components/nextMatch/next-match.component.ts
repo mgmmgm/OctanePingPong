@@ -34,7 +34,7 @@ export class NextMatchComponent implements OnInit {
                     }
 
                 }
-            })
+            });
         });
     }
     

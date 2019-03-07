@@ -9,6 +9,7 @@ import {Player} from '../../models/player';
 export class RegistrationComponent {
 
     user: Player;
+    registerSuccessfully;
     errorWithRegistration: string;
 
     constructor(private firebaseAuthService: FirebaseAuthService) {
@@ -18,8 +19,8 @@ export class RegistrationComponent {
     async register() {
         this.errorWithRegistration = null;
         try {
-            let result = await this.firebaseAuthService.signUp(this.user);
-            console.log('user sign up successfully');
+            this.registerSuccessfully = await this.firebaseAuthService.signUp(this.user);
+            console.log('user sign up successfully', this.registerSuccessfully);
         } catch(error) {
             this.errorWithRegistration = error.message;
         }
