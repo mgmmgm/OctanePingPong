@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {Player} from '../models/player';
+import messageService from '../services/messageService';
 
 @Injectable()
 export class FirebaseAuthService {
@@ -15,6 +16,7 @@ export class FirebaseAuthService {
         afAuth.authState.subscribe(auth => {
             if (auth) {
                 this.authState = auth;
+                messageService.message.next('check if admin');
             } else {
                 console.log('problem to connect to firebase');
             }
@@ -22,7 +24,7 @@ export class FirebaseAuthService {
     }
 
     get currentUserId(): string {
-        return this.authState && this.authState.user.uid;
+        return this.authState && (this.authState.uid || this.authState.user.uid);
     }
 
     signUp(player: Player) {
@@ -54,8 +56,7 @@ export class FirebaseAuthService {
 	}
 
     getLoggedInUser() {
-        const userId = this.authState.uid;
-        const path = `players/${userId}`;
+        const path = `players/${this.currentUserId}`;
         return this.db.object(path).valueChanges();
     }
 

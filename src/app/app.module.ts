@@ -37,6 +37,7 @@ import { SortByPipe } from './pipes/sortByPipe';
 import { PlayerComponent } from './components/player/player.component';
 import { AdminGuardService } from './services/adminGuardService';
 
+
 @NgModule({
   declarations: [
     AppComponent,
