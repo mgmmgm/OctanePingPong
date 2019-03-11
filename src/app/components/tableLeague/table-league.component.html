@@ -1,6 +1,6 @@
 <div>
-    Table league
-    <div>Hello {{loggedInUser.nickname}}</div>
+    <div class="table-leagues-header">Table league</div>
+    <!-- <div >Hello {{loggedInUser.nickname}}</div> -->
     <div class="table-leagues">
         <div *ngFor="let table of mapTablesLeague | keyvalue" class="table-league">
             <label class="groups-table-title">Group {{table.key}}</label>

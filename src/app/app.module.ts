@@ -36,6 +36,7 @@ import { filterGamesPipe } from './pipes/filterGamesPipe';
 import { SortByPipe } from './pipes/sortByPipe';
 import { PlayerComponent } from './components/player/player.component';
 import { AdminGuardService } from './services/adminGuardService';
+import {NotifierModule} from 'angular-notifier';
 
 
 @NgModule({
@@ -72,7 +73,22 @@ import { AdminGuardService } from './services/adminGuardService';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'right',
+          distance: 50
+        },
+        vertical: {
+          position: 'top',
+          distance: 120
+        }
+      },
+      behaviour: {
+        autoHide: 5000
+      }
+    })
   ],
   providers: [AuthGardService, AdminGuardService, FirebaseAuthService, FirebaseService, GameService, PlayerService],
   bootstrap: [AppComponent]

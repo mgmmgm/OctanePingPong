@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseAuthService} from '../../services/firebaseAuthService';
 import {FirebaseService} from '../../services/firebaseService';
+import {NotifierService} from 'angular-notifier';
 import {GameService} from '../../services/gameService';
 import { PlayerService } from '../../services/playerService';
 import {Player} from '../../models/player';
@@ -19,7 +20,7 @@ export class AdminComponent implements OnInit {
 	resultMessage: any;
 	alreadyHaveLeague: boolean;
 
-    constructor(private firebaseService: FirebaseService, private gameService: GameService, private playerService: PlayerService) {}
+    constructor(private firebaseService: FirebaseService, private notifierService: NotifierService, private gameService: GameService, private playerService: PlayerService) {}
 
     ngOnInit() {
         this.league = {howManyGroups: 1, startingDay: new Date(), timeFrameForEachGame: 3};
@@ -76,6 +77,7 @@ export class AdminComponent implements OnInit {
 			}
 		}
 		this.createLeagueResult = 'League created successfully!';
+		this.notifierService.notify('success', this.createLeagueResult);
 	}
 	
 	private setLeague(nameArray) {
@@ -145,10 +147,12 @@ export class AdminComponent implements OnInit {
     
 	public updateGame(gameId, winner) {
 		this.resultMessage = null;
-		this.firebaseService.updateGameAndScore(gameId, winner).then(result => {
+		this.firebaseService.updateGameAndScore(gameId, winner).then((result: any) => {
 			this.resultMessage = result;
+			this.notifierService.notify('success', result);
 		}).catch(error => {
 			this.resultMessage = error;
+			this.notifierService.notify('error', error);
 		});
 	}
 

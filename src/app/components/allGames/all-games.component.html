@@ -1,10 +1,10 @@
 <div class="all-games">
-    <span class="all-games-table-filters">
-        <label>Filter:</label>
+    <div class="all-games-table-filters">
+        <label class="all-games-table-filters-label">Filter:</label>
         <span class="all-games-filter-table" (click)="selectFilterTable('all')" [ngClass]="{selected: selectedFilter == 'all'}">All</span>
         <span class="all-games-filter-table all-games-filter-my-group" (click)="selectFilterTable('group')" [ngClass]="{selected: selectedFilter == 'group'}">My Group</span>
         <span class="all-games-filter-table all-games-filter-my-games" (click)="selectFilterTable('my')" [ngClass]="{selected: selectedFilter == 'my'}">My Games</span>
-    </span>
+    </div>
     <table class="table table-bordered all-games-table">
         <thead>
             <th class="all-games-table-header">#</th>
