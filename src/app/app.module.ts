@@ -90,7 +90,7 @@ import {NotifierModule} from 'angular-notifier';
       }
     })
   ],
-  providers: [AuthGardService, AdminGuardService, FirebaseAuthService, FirebaseService, GameService, PlayerService],
+  providers: [AuthGardService, AdminGuardService, FirebaseAuthService, FirebaseService, GameService, PlayerService, SortByPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
