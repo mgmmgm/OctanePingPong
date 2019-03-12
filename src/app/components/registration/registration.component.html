@@ -1,11 +1,11 @@
 <div>
 
     <div class="text-align-center">
-        <h1 class="registration-header">ALM Octane Table Tennis Tournament 2018!</h1>
-        <p>In the next few days we are about to conduct the first Octane tennis table tournament, if you would like to join us, fill your details below.</p>
+        <h1 class="registration-header">ALM Octane Table Tennis Tournament 2019!</h1>
+        <p *ngIf="!registerSuccessfully" class="registration-message">In the next few days we are about to conduct the first Octane tennis table tournament,<br>if you would like to join us, fill your details below.</p>
     </div>
 
-    <div class="login-form-container">
+    <div *ngIf="!registerSuccessfully" class="login-form-container">
         <form #registrationForm="ngForm" (ngSubmit)="register()" class='login-form'>
             <div class="flex-row">
                 <div class="ui-inputgroup">
@@ -35,7 +35,7 @@
         </form>
     </div>
 
-    <div *ngIf="registerSuccessfully" class="margin-v--10px text-align-center">
-        You are successfully registered to this tournament...
+    <div *ngIf="registerSuccessfully" class="registration-successful-message">
+        <p>You are successfully registered to this tournament.<br>We'll keep in touch.</p>
     </div>
 </div>
