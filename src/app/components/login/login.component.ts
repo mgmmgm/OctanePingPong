@@ -9,8 +9,8 @@ import { Player } from '../../models/player';
 })
 export class LoginComponent {
 
-	private user: Player;
-	private errorInLogin: string;
+	public user: Player;
+	public errorInLogin: string;
 
 	constructor(private firebaseAuthService: FirebaseAuthService, private router: Router) {
 		this.user = new Player();

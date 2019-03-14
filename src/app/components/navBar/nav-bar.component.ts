@@ -12,7 +12,7 @@ export class NavBarComponent implements OnInit {
 
     isAdmin: boolean = false;
 
-    constructor(private firebaseAuthService: FirebaseAuthService) {}
+    constructor(public firebaseAuthService: FirebaseAuthService) {}
 
     ngOnInit() {
         messageService.message.subscribe(msg => {
@@ -21,7 +21,6 @@ export class NavBarComponent implements OnInit {
     }
 
     logout() {
-        console.log('logout');
         this.firebaseAuthService.logout();
     }
 }
