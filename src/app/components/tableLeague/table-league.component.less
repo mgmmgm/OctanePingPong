@@ -23,9 +23,11 @@
 }
 
 .groups-table {
-    width: 450px;
+    width: 300px;
+    @media screen and (min-width: 600px) {
+        width: 450px;
+    }
     text-align: center;
-    
 }
 
 .groups-table-header {
@@ -34,19 +36,31 @@
 }
 
 .groups-table-header-player {
-    width: 160px;
+    width: 120px;
+    @media screen and (min-width: 600px) {
+        width: 160px;
+    }
 }
 
 .groups-table-header-num-games {
-    width: 120px;
+    width: 60px;
+    @media screen and (min-width: 600px) {
+        width: 120px;
+    }
 }
 
 .groups-table-header-wins {
-    width: 80px;
+    width: 30px;
+    @media screen and (min-width: 600px) {
+        width: 80px;
+    }
 }
 
 .groups-table-header-losses {
-    width: 80px;
+    width: 30px;
+    @media screen and (min-width: 600px) {
+        width: 80px;
+    }
 }
 
 .group-tables-active-user {
