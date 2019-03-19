@@ -24,6 +24,7 @@ import {TableModule} from "primeng/components/table/table";
 import {FieldsetModule} from "primeng/components/fieldset/fieldset";
 import {SpinnerModule} from "primeng/components/spinner/spinner";
 import {CalendarModule} from "primeng/components/calendar/calendar";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { GameService } from './services/gameService';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
@@ -67,6 +68,7 @@ import {NotifierModule} from 'angular-notifier';
     FieldsetModule,
     SpinnerModule,
     CalendarModule,
+    ProgressSpinnerModule,
     MatTabsModule,
     MatInputModule,
     MatTableModule,

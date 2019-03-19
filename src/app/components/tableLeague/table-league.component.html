@@ -1,6 +1,6 @@
 <div>
     <div class="table-leagues-header">Table league</div>
-    <div *ngIf="userPlaceInHisGroup" class="text-align-center">Hello {{loggedInUser.nickname}}, you are in the {{userPlaceInHisGroup + 1}} place in your group</div>
+    <div *ngIf="userPlaceInHisGroup >= 0" class="text-align-center">Hello {{loggedInUser.nickname}}, you are in the {{userPlaceInHisGroup + 1}} place in your group</div>
     <div class="table-leagues">
         <div *ngFor="let table of mapTablesLeague | keyvalue" class="table-league">
             <label class="groups-table-title">Group {{table.key}}</label>
@@ -25,4 +25,9 @@
             
         </div>
     </div>
+
+    <div *ngIf="isLoading" class="loading-spinner">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+    
 </div>

@@ -16,16 +16,26 @@ export class TableLeagueCompoent implements OnInit {
     mapTablesLeague: object = {};
     userGroup: string;
     userPlaceInHisGroup: number;
+    isLoading: boolean = true;
 
     constructor(private firebaseAuthService: FirebaseAuthService, private firebaseService: FirebaseService, private playerService: PlayerService, private sortByPipe: SortByPipe) {}
 
     async ngOnInit() {
-        await this.playerService.getAllPlayers();
-        this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => this.loggedInUser = player);
-        this.firebaseService.getAllScores().subscribe(scores => {
-            this.createTableLeague(scores);
-            this.findUserPlaceInHisGroup();
-        });
+        this.isLoading = true;
+        try {
+            await this.playerService.getAllPlayers();
+            this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => this.loggedInUser = player);
+            this.firebaseService.getAllScores().subscribe(scores => {
+                try {
+                    this.createTableLeague(scores);
+                    this.findUserPlaceInHisGroup();
+                } finally {
+                    this.isLoading = false;
+                }
+            });
+        } catch(e) {
+            this.isLoading = false;
+        }
     }
 
     createTableLeague(scores: Score[]) {

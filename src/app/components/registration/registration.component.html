@@ -34,6 +34,10 @@
         </form>
     </div>
 
+    <div *ngIf="isLoading" class="loading-spinner">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+
     <div *ngIf="registerSuccessfully" class="registration-successful-message">
         <p>You are successfully registered to this tournament.<br>We'll keep in touch.</p>
     </div>

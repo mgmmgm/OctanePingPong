@@ -11,6 +11,7 @@ export class RegistrationComponent {
     user: Player;
     registerSuccessfully;
     errorWithRegistration: string;
+    isLoading: boolean = false;
 
     constructor(private firebaseAuthService: FirebaseAuthService) {
         this.user = new Player();
@@ -18,11 +19,14 @@ export class RegistrationComponent {
 
     async register() {
         this.errorWithRegistration = null;
+        this.isLoading = true;
         try {
             this.registerSuccessfully = await this.firebaseAuthService.signUp(this.user);
             console.log('user sign up successfully', this.registerSuccessfully);
         } catch(error) {
             this.errorWithRegistration = error.message;
+        } finally {
+            this.isLoading = false;
         }
     }
 
