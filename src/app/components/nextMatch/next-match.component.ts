@@ -13,10 +13,13 @@ export class NextMatchComponent implements OnInit {
 
     loggedInUser: Player = new Player();
     nextGame: Game;
+    finishAllGames: boolean = false;
+    isLoading: boolean = true;
 
     constructor(private firebaseAuthService: FirebaseAuthService, private firebaseService : FirebaseService, private playerService: PlayerService) {}
 
     async ngOnInit() {
+        this.isLoading = true;
         await this.playerService.getAllPlayers();
         this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => {
             this.loggedInUser = player;
@@ -29,11 +32,12 @@ export class NextMatchComponent implements OnInit {
                             games[i].playerAfullName = this.playerService.getPlayerFullName(games[i].playerA);
                             games[i].playerBfullName = this.playerService.getPlayerFullName(games[i].playerB);
                             this.nextGame = games[i];
-                            return;
+                            break;
                         }
                     }
-
                 }
+                this.finishAllGames = !this.nextGame;
+                this.isLoading = false;
             });
         });
     }

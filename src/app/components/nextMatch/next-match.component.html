@@ -1,5 +1,5 @@
 <div *ngIf="nextGame" class="next-game-header">Hi {{loggedInUser.nickname}}, your Next Game</div>
-<div *ngIf="!nextGame" class="next-game-header">You have no more games to play.<br>Wait until the league will end.</div>
+<div *ngIf="finishAllGames" class="next-game-header">You have no more games to play.<br>Wait until the league will end.</div>
 <div *ngIf="nextGame">
     <div class="next-game-players">
         <player class="next-game-player next-game-left-player" name="{{nextGame.playerAfullName}}" picture="assets/images/playerLeft.jpg"></player>
@@ -10,4 +10,8 @@
         <label>Time frame for this match:</label>
         <span>{{nextGame.startDate | date}} - {{nextGame.endDate | date}}</span>
     </div>
+</div>
+
+<div *ngIf="isLoading" class="loading-spinner">
+    <p-progressSpinner></p-progressSpinner>
 </div>
