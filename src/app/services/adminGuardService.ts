@@ -13,7 +13,7 @@ export class AdminGuardService implements CanActivate {
 
     canActivate() {
         return this.afAuth.authState.take(1).map(user => {
-            return user && user.email === 'cc@cc.com';
+            return user && user.email === 'moshe@golan.com';
         }).do(allowed => {
             if (!allowed) {
                 this.router.navigate(['/league']);

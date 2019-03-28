@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand logo-brand" [routerLink]="['registration']">
+    <a class="navbar-brand logo-brand">
         <img class="game-logo" src="assets/images/logo.png">
     </a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
+        <!-- <ul class="navbar-nav mr-auto">
             <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['league']">League</a>
             </li>
@@ -25,6 +25,6 @@
             <li *ngIf="firebaseAuthService.authState" class="nav-item" class="cursor-pointer">
                 <a class="nav-link" (click)="logout()">Logout</a>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </nav>

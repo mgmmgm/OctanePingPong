@@ -11,11 +11,11 @@ import { AdminGuardService } from './services/adminGuardService';
 
 const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGardService, AdminGuardService]},
-  {path: 'league' , component: TableLeagueCompoent, canActivate: [AuthGardService]},
-  {path: 'nextMatch', component: NextMatchComponent, canActivate: [AuthGardService]},
-  {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]},
+  // {path: 'login', component: LoginComponent},
+  // {path: 'admin', component: AdminComponent, canActivate: [AuthGardService, AdminGuardService]},
+  // {path: 'league' , component: TableLeagueCompoent, canActivate: [AuthGardService]},
+  // {path: 'nextMatch', component: NextMatchComponent, canActivate: [AuthGardService]},
+  // {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]},
   { path: '',  redirectTo: '/registration', pathMatch: 'full' },
 	{ path: '**', redirectTo: '/registration' }
 ];
