@@ -19,7 +19,7 @@ export class AuthGardService implements CanActivate {
            })
            .do(authenticated => {
              if (!authenticated) {
-               console.log("access denied");
+              //  console.log("access denied");
                this.router.navigate(['/login']);
              }
          })

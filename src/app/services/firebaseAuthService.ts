@@ -18,7 +18,7 @@ export class FirebaseAuthService {
                 this.authState = auth;
                 messageService.message.next('check if admin');
             } else {
-                console.log('problem to connect to firebase');
+                // console.log('problem to connect to firebase');
             }
         });
     }
@@ -43,7 +43,7 @@ export class FirebaseAuthService {
         try {
             await this.db.object(path).update(data);
         } catch (error) {
-            console.log('error save user data, ' + error);
+            // console.log('error save user data, ' + error);
         }
     }
 

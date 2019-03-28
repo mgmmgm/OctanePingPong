@@ -22,7 +22,7 @@ export class RegistrationComponent {
         this.isLoading = true;
         try {
             this.registerSuccessfully = await this.firebaseAuthService.signUp(this.user);
-            console.log('user sign up successfully', this.registerSuccessfully);
+            // console.log('user sign up successfully', this.registerSuccessfully);
         } catch(error) {
             this.errorWithRegistration = error.message;
         } finally {

@@ -30,7 +30,7 @@ export class AllGamesComponent implements OnInit {
         this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => {
             this.loggedInUser = player;
             this.findPlayerGroup(player);
-            console.log(this.playerGroup);
+            // console.log(this.playerGroup);
         });
     }
 

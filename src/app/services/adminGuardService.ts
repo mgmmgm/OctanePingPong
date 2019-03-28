@@ -17,7 +17,7 @@ export class AdminGuardService implements CanActivate {
         }).do(allowed => {
             if (!allowed) {
                 this.router.navigate(['/league']);
-                console.log("user is not admin");
+                // console.log("user is not admin");
             }
         })
     }
