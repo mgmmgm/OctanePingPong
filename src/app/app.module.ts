@@ -26,18 +26,19 @@ import {SpinnerModule} from "primeng/components/spinner/spinner";
 import {CalendarModule} from "primeng/components/calendar/calendar";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { GameService } from './services/gameService';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { LoginComponent } from './components/login/login.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { AllGamesComponent } from './components/allGames/all-games.component';
-import { NextMatchComponent } from './components/nextMatch/next-match.component';
-import { TableLeagueCompoent } from './components/tableLeague/table-league.component';
+import { RegistrationComponent } from './views/registration/registration.component';
+import { LoginComponent } from './views/login/login.component';
+import { AdminComponent } from './views/admin/admin.component';
+import { AllGamesComponent } from './views/allGames/all-games.component';
+import { NextMatchComponent } from './views/nextMatch/next-match.component';
+import { TableLeagueCompoent } from './views/tableLeague/table-league.component';
 import { PlayerService } from './services/playerService';
 import { filterGamesPipe } from './pipes/filterGamesPipe';
 import { SortByPipe } from './pipes/sortByPipe';
 import { PlayerComponent } from './components/player/player.component';
 import { AdminGuardService } from './services/adminGuardService';
 import {NotifierModule} from 'angular-notifier';
+import { FinalComponent } from './views/final/final.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {NotifierModule} from 'angular-notifier';
     AllGamesComponent,
     NextMatchComponent,
     TableLeagueCompoent,
+    FinalComponent,
     PlayerComponent,
     filterGamesPipe,
     SortByPipe

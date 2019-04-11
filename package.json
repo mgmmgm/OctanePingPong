@@ -29,6 +29,7 @@
     "firebase": "^5.8.4",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+    "jsplumb": "^2.9.0",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.5",
     "rxjs": "~6.3.3",
