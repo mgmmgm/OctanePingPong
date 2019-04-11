@@ -8,7 +8,7 @@ import { AuthGardService } from './services/authGuardService';
 import { AllGamesComponent } from './views/allGames/all-games.component';
 import { NextMatchComponent } from './views/nextMatch/next-match.component';
 import { AdminGuardService } from './services/adminGuardService';
-import { FinalComponent } from './views/final/final.component';
+import { FinalEightComponent } from './views/final/final-eight.component';
 
 const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'league' , component: TableLeagueCompoent, canActivate: [AuthGardService]},
   {path: 'nextMatch', component: NextMatchComponent, canActivate: [AuthGardService]},
   {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]},
-  {path: 'final', component: FinalComponent, canActivate: [AuthGardService]},
+  {path: 'final', component: FinalEightComponent, canActivate: [AuthGardService]},
   { path: '',  redirectTo: '/registration', pathMatch: 'full' },
 	{ path: '**', redirectTo: '/registration' }
 ];
