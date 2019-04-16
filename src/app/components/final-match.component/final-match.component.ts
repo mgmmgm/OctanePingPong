@@ -11,8 +11,11 @@ export class FinalMatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private jsPlumbInstance;
     private anchor;
+    private isHorizontal;
     @Input() id: string;
     @Input() side: string = 'right';
+    @Input() height: string = '200px';
+    @Input() direction: string = 'vertical';
 
     ngOnInit() {
         if (this.side === 'left') {
@@ -20,6 +23,9 @@ export class FinalMatchComponent implements OnInit, AfterViewInit, OnDestroy {
         } else {
             this.anchor = ['Right', 'Left'];
         }
+
+        this.height = this.height.endsWith('px') ? this.height : this.height + 'px';
+        this.isHorizontal = this.direction === 'horizontal';
     }
 
     ngAfterViewInit() {
@@ -35,7 +41,7 @@ export class FinalMatchComponent implements OnInit, AfterViewInit, OnDestroy {
     drawConnections() {
         let labelName = 'connection';
         this.jsPlumbInstance.connect({
-        connector: ['Flowchart', { stub: [112, 67], cornerRadius: 1, alwaysRespectStubs: true }],
+        connector: ['Flowchart', { stub: [100, 67], cornerRadius: 1, alwaysRespectStubs: true }],
         source: `Source-${this.id}`,
         target: `Target-${this.id}`,
         anchor: this.anchor,

@@ -1,7 +1,37 @@
 <div class="final-page">
-    
-    <final-match [id]="1"></final-match>
 
-    <final-match [id]="2" [side]="'left'"></final-match>
+  <div class="first-level">
+    <div class="left top">
+      <final-match [id]="1"></final-match>
+    </div>
+    
+    <div class="left bottom">
+      <final-match [id]="2"></final-match>
+    </div>
+
+    <div class="right top">
+      <final-match [id]="3" [side]="'left'"></final-match>
+    </div>
+    
+    <div class="right bottom">
+      <final-match [id]="4" [side]="'left'"></final-match>
+    </div>
+  </div>
+
+  <div class="second-level">
+      <div class="left top">
+        <final-match [id]="5" [height]="'415'"></final-match>
+      </div>
+  
+      <div class="right top">
+        <final-match [id]="6" [height]="'415'" [side]="'left'"></final-match>
+      </div>
+  </div>
+
+  <div class="third-level">
+      <div class="">
+        <final-match [id]="7" [direction]="'horizontal'"></final-match>
+      </div>
+  </div>
 
 </div>
