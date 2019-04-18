@@ -39,7 +39,6 @@ import { PlayerComponent } from './components/player/player.component';
 import { AdminGuardService } from './services/adminGuardService';
 import {NotifierModule} from 'angular-notifier';
 import { FinalEightComponent } from './views/final/final-eight.component';
-import { FinalMatchComponent } from './components/final-match.component/final-match.component';
 
 
 @NgModule({
@@ -52,7 +51,6 @@ import { FinalMatchComponent } from './components/final-match.component/final-ma
     AllGamesComponent,
     NextMatchComponent,
     TableLeagueCompoent,
-    FinalMatchComponent,
     FinalEightComponent,
     PlayerComponent,
     filterGamesPipe,
