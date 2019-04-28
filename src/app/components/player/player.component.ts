@@ -8,7 +8,10 @@ import {Component, Input} from '@angular/core';
 export class PlayerComponent{
 
     @Input()
-    name: string;
+    nickName: string;
+
+    @Input()
+    username: string;
 
     @Input()
     picture: string;    

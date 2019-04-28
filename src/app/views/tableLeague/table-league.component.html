@@ -15,7 +15,7 @@
                 <tbody>
                     <tr *ngFor="let score of table.value | sortBy: 'wins':'descending' ; let i = index" [ngClass]="{'group-table-success': i < 2}">
                         <td>{{i + 1}}</td>
-                        <td [ngClass]="{'group-tables-active-user': score.username == loggedInUser.email}">{{score.fullName}}</td>
+                        <td [ngClass]="{'group-tables-active-user': score.username == loggedInUser.email}" title="{{score.username}}">{{score.fullName}}</td>
                         <td>{{score.wins + score.losses}}</td>
                         <td>{{score.wins}}</td>
                         <td>{{score.losses}}</td>
