@@ -11,15 +11,15 @@ import { AdminGuardService } from './services/adminGuardService';
 import { FinalEightComponent } from './views/final/final-eight.component';
 
 const routes: Routes = [
-  {path: 'registration', component: RegistrationComponent},
+  // {path: 'registration', component: RegistrationComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGardService, AdminGuardService]},
   {path: 'league' , component: TableLeagueCompoent, canActivate: [AuthGardService]},
   {path: 'nextMatch', component: NextMatchComponent, canActivate: [AuthGardService]},
   {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]},
-  {path: 'final', component: FinalEightComponent, canActivate: [AuthGardService]},
-  { path: '',  redirectTo: '/registration', pathMatch: 'full' },
-	{ path: '**', redirectTo: '/registration' }
+  // {path: 'final', component: FinalEightComponent, canActivate: [AuthGardService]},
+  { path: '',  redirectTo: '/login', pathMatch: 'full' },
+	{ path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

@@ -11,12 +11,16 @@ import { Player } from '../../models/player';
 export class NavBarComponent implements OnInit {
 
     isAdmin: boolean = false;
+    isGuest: boolean = false;
 
     constructor(public firebaseAuthService: FirebaseAuthService) {}
 
     ngOnInit() {
         messageService.message.subscribe(msg => {
-            this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => this.isAdmin = player.isAdmin);
+            this.firebaseAuthService.getLoggedInUser().subscribe((player: Player) => {
+                this.isAdmin = player.isAdmin;
+                this.isGuest = player.isGuest;
+            })
         })
     }
 

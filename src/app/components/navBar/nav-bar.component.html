@@ -8,15 +8,15 @@
             <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['league']">League</a>
             </li>
-            <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
+            <li *ngIf="firebaseAuthService.authState && !isGuest" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['nextMatch']">My Next Match</a>
             </li>
             <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['games']">All Games</a>
             </li>
-            <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
+            <!-- <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['final']">Final 8</a>
-            </li>
+            </li> -->
         </ul>
         <ul class="navbar-nav ml-auto">
             <li *ngIf="!firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">

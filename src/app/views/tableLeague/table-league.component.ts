@@ -28,7 +28,9 @@ export class TableLeagueCompoent implements OnInit {
             this.firebaseService.getAllScores().subscribe(scores => {
                 try {
                     this.createTableLeague(scores);
-                    this.findUserPlaceInHisGroup();
+                    if (!this.loggedInUser.isGuest) {
+                        this.findUserPlaceInHisGroup();
+                    }
                 } finally {
                     this.isLoading = false;
                 }

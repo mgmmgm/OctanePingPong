@@ -66,7 +66,7 @@
                     <th class="all-games-table-header">Winner</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let game of games; let i=index">
+                    <tr *ngFor="let game of games | sortBy: 'startDate':'ascending'; let i=index">
                         <td>{{i + 1}}</td>
                         <td>{{game.groupName}}</td>
                         <td>{{game.playerAfullName}}</td>

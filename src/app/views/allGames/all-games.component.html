@@ -1,5 +1,5 @@
 <div class="all-games">
-    <div class="all-games-table-filters">
+    <div *ngIf="!loggedInUser.isGuest" class="all-games-table-filters">
         <label class="all-games-table-filters-label">Filter:</label>
         <span class="all-games-filter-table" (click)="selectFilterTable('all')" [ngClass]="{selected: selectedFilter == 'all'}">All</span>
         <span class="all-games-filter-table all-games-filter-my-group" (click)="selectFilterTable('group')" [ngClass]="{selected: selectedFilter == 'group'}">My Group</span>
