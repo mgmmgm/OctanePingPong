@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'league' , component: TableLeagueCompoent, canActivate: [AuthGardService]},
   {path: 'nextMatch', component: NextMatchComponent, canActivate: [AuthGardService]},
   {path: 'games', component: AllGamesComponent, canActivate: [AuthGardService]},
-  // {path: 'final', component: FinalEightComponent, canActivate: [AuthGardService]},
+  {path: 'final', component: FinalEightComponent, canActivate: [AuthGardService]},
   { path: '',  redirectTo: '/login', pathMatch: 'full' },
 	{ path: '**', redirectTo: '/login' }
 ];

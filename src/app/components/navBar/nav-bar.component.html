@@ -14,9 +14,9 @@
             <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
                 <a class="nav-link" [routerLink]="['games']">All Games</a>
             </li>
-            <!-- <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link" [routerLink]="['final']">Final 8</a>
-            </li> -->
+            <li *ngIf="firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link nav-highlight" [routerLink]="['final']">Final 8</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li *ngIf="!firebaseAuthService.authState" class="nav-item" [routerLinkActive]="['active']">
